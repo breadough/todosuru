@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
-    protected $table = 'tasks';
+    // protected $table = 'tasks';
+    // protected $fillable = ['task', 'description', 'completed', 'attachment'];
+    protected $guarded = ['id'];
 }
