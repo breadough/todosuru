@@ -20,7 +20,7 @@ use App\Http\Controllers\API\TaskController;
 //     return $request->user();
 // });
 
-Route::get('tasks', [TaskController::class, 'index']);
+Route::get('task', [TaskController::class, 'index']);
 Route::get('task/{id}', [TaskController::class, 'view']);
 Route::post('task', [TaskController::class, 'store']);
 Route::put('task/{id}', [TaskController::class, 'update']);
