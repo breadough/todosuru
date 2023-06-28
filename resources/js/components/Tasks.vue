@@ -3,7 +3,6 @@
       <Task 
         :key="task.id"
         :task="task"
-        @task-updated="completeTask(task.id)"
         @task-deleted="deleteTask(task.id)"
       />
     </div>
@@ -21,11 +20,8 @@ export default{
   components:{
     Task,
   },
-  emits: ['complete-task', 'delete-task'],
+  emits: ['delete-task'],
   methods: {
-    completeTask(taskId){
-      this.$emit('complete-task', taskId);
-    },
     deleteTask(taskId){
       this.$emit('delete-task', taskId);
     },

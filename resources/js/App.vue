@@ -6,7 +6,6 @@
   <div class="container">
   <Tasks
   :tasks="tasks"
-  @complete-task="completeTask"
   @delete-task="deleteTask"
   />
   </div>
@@ -37,24 +36,7 @@ export default{
       const res = await fetch('http://127.0.0.1:8000/api/task')
       const data = await res.json()
       return data.data
-    },
-
-    async completeTask(taskId){
-      const url = `http://127.0.0.1:8000/api/task/${taskId}/done`
-      const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          };
-
-      const res = await fetch(url, options);
-      if (res.ok){
-        console.log("Response: Marked complete!"+taskId)
-      }else{
-        console.log("Response: Failed!"+taskId)
-      }
-    },
+    },    
     async deleteTask(taskId){
       console.log("Delete from App")
       this.tasks = this.tasks.filter(task => task.id !== taskId);
@@ -78,7 +60,7 @@ async created() {
 
 body{
   background: #282a36;
-  color: #bd93f9;
+  color: aqua;
   font-family: 'Red Hat Mono', monospace;
 }
 
@@ -100,9 +82,5 @@ input[type="checkbox"]{
   border: 2px solid #ff79c6;
   padding: 10px 20px;
   margin: 10px;
-}
-
-.clr-green{
-    border: 2px solid #d6c210;
 }
 </style>
