@@ -28,6 +28,7 @@ class TaskController extends Controller
             'description' => ['string', 'max:255']
         ]);
 
+        $validated['completed'] = 0;
         $data = Task::create($validated);
         return response()->json(['status' => '200', 'added' => true, 'data' => $data]);
     }

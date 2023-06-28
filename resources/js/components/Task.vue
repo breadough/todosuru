@@ -10,6 +10,11 @@
         <h4 :class = "[task.completed ? 'strike' : '', 'task']">
           {{ task.task }}
         </h4>
+        <input
+        @click="deleteTask"
+        type="button"
+        class="btn-close"
+        >
       </div>
 </template>
 
@@ -25,6 +30,9 @@ export default {
     completeTask(){
       this.task.completed = !this.task.completed;
       this.$emit('task-updated', this.task);
+    },
+    deleteTask(){
+      this.$emit('task-deleted', this.task);
     },
   },
 }

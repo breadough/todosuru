@@ -1,9 +1,13 @@
 <template>
   <Header />
+  <AddTask 
+  @add-task="addTask"
+  />
   <div class="container">
   <Tasks
   :tasks="tasks"
   @complete-task="completeTask"
+  @delete-task="deleteTask"
   />
   </div>
 <Footer />
@@ -13,6 +17,7 @@
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Tasks from "./components/Tasks.vue";
+import AddTask from "./components/AddTask.vue";
 
 export default{
   name: 'App',
@@ -20,6 +25,7 @@ export default{
     Header,
     Footer,
     Tasks,
+    AddTask,
   },
   data() {
     return {
@@ -48,6 +54,26 @@ export default{
       }else{
         console.log("Response: Failed!"+taskId)
       }
+    },
+    async deleteTask(taskId){
+      const url = `http://127.0.0.1:8000/api/task/${taskId}`
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type':'application/json'
+        }
+      };
+
+      const res = await fetch(url, options);
+      if (res.ok){
+        console.log("Response: Delete complete!"+taskId)
+      }else{
+        console.log("Response: Delete Failed!"+taskId)
+      }
+    },
+    async addTask(newTask){
+      console.log('Added Task to App')
+      this.tasks.push(newTask)
     }
 },
 async created() {
@@ -57,7 +83,7 @@ async created() {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300&display=swap');
-/* @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css'); */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css');
 
 body{
   background: #282a36;
@@ -72,7 +98,7 @@ body{
   padding: 30px;
 }
 
-input{
+input[type="checkbox"]{
    cursor: pointer;
 }
 
