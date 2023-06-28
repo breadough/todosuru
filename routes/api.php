@@ -22,6 +22,7 @@ use App\Http\Controllers\API\TaskController;
 
 Route::get('task', [TaskController::class, 'index']);
 Route::get('task/{id}', [TaskController::class, 'view']);
+Route::get('task/{id}/done', [TaskController::class, 'done']);//support for get
 Route::post('task', [TaskController::class, 'store']);
 Route::post('task/{id}/done', [TaskController::class, 'done']);
 Route::put('task/{id}', [TaskController::class, 'update']);
