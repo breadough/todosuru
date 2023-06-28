@@ -41,8 +41,9 @@ class TaskController extends Controller
 
     public function done($id){
         $data = Task::findOrFail($id);
+        request()->merge(['completed' => 1]);
         $data->update(request()->all());
-    
+
         return response()->json(['status' => '200', 'completed' => true, 'data' => $data]);
     }
 
