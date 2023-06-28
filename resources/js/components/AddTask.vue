@@ -36,7 +36,6 @@ export default {
                 const data = await res.json()
                 if (res.ok) {
                     console.log('Task added successfully')
-
                     this.$emit('add-task', data.data);
                     this.task = '';
                     this.description = '';

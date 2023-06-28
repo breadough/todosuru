@@ -56,28 +56,19 @@ export default{
       }
     },
     async deleteTask(taskId){
-      const url = `http://127.0.0.1:8000/api/task/${taskId}`
-      const options = {
-        method: 'DELETE',
-        headers: {
-          'Content-Type':'application/json'
-        }
-      };
-
-      const res = await fetch(url, options);
-      if (res.ok){
-        console.log("Response: Delete complete!"+taskId)
-      }else{
-        console.log("Response: Delete Failed!"+taskId)
-      }
+      console.log("Delete from App")
+      this.tasks = this.tasks.filter(task => task.id !== taskId);
+      console.log(this.tasks);
     },
     async addTask(newTask){
       console.log('Added Task to App')
       this.tasks.push(newTask)
+      console.log(this.tasks);
     }
 },
 async created() {
     this.tasks = await this.fetchTasks()
+    console.log(this.tasks);
   },
 }
 </script>
