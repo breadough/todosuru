@@ -28,7 +28,7 @@ params:
  - task(optional)
  - decription(optional)
 
-mark as complete task[PUT]:
+mark as complete task[POST/GET]:
 {url}/api/task/{id}/done
 
 delete task[DELETE]:
